@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- Селекторы типа -->
+    <!-- <h1>Hello!!!</h1>
+    <script>
+        const title = document.querySelector('h1');
+        console.log(title);
+    </script> -->
+
+    <!-- Селектор идентификатора -->
+    <!-- <h1 id="navbar">Big Heading!!</h1>
+    <script>
+        const navbar = document.querySelector('#navbar');
+    </script> -->
+
+    <!-- Селектор класса -->
+    <!-- <h1 class="navbar">СИМПЛ</h1>
+    <script>
+        const navbar = document.querySelector('.navbar');
+    </script> -->
+
+    <!-- Селектор потомков -->
+    <!-- <div id="banner">
+        <div class="item"></div>
+    </div>
+    <script>
+        const item = document.querySelector('#banner .item');
+    </script> -->
+
+    <!-- Ещё пример -->
+    <!-- <a href="/contact-us" class="menuLink">Contact us</a>
+    <script>
+        const link = document.querySelector('a.menuLink');
+    </script> -->
+
+    <!-- Селектор атрибутов -->
+    <!-- <input type="text" placeholder="Your name here" disabled>
+    <script>
+        document.querySelector('[disabled]');
+    </script> -->
+
+    <!-- <h1>Title</h1>
+    <script>
+        console.dir(document.querySelector('h1'));
+    </script> -->
+
+    <!-- Свойство textContent возвращает текст между открывающими тегами. -->
+    <!-- <div>Hello World!!!</div>
+    <script>
+        // const div = document.querySelector('div');
+        // console.log(div.textContent);
+        const paragraph = document.querySelector('p');
+        // first example
+        if (paragraph) {
+            console.log(paragraph.textContent);
+        }
+
+        // second example
+        console.log(paragraph?.textContent);
+    </script> -->
+
+    <!--Альтернативные методы
+    Примеры кода ниже вернут один и тот же элемент: -->
+
+    <!-- <script>
+        const navbar = document.querySelector('#navbar'); // # has to be provided for ids
+    </script> -->
+
+    <!-- <script>
+        const navbar = document.getElementById('navbar'); // you should skip the #
+    </script> -->
+
+    <!-- В этом примере мы вернули все теги p. -->
+    <!-- <p id="first">First paragraph</p>
+    <p id="second">Second paragraph</p>
+
+    <script>
+        document.querySelectorAll('p'); // NodeList(2) [p#first, p#second]
+    </script> -->
+
+    <!-- NodeList - это коллекция элементов DOM. -->
+    <!-- NodeList не является массивом, но есть некоторые сходства:
+    1. у них обоих есть свойство length
+    2. вы можете получить доступ к элементам по определенному индексу с помощью квадратных скобок
+    3. можно итерироваться с помощью forEach() -->
+    <!-- <p>First Paragraph</p>
+    <p>Second Paragraph</p>
+    <script>
+        const paragraphs = document.querySelectorAll('p');
+        console.log(paragraphs.length); //2
+        console.log(paragraphs[0]); // <p>First Paragraph</p>
+        console.log(paragraphs[1]); // <p>Second Paragraph</p>
+
+        paragraphs.forEach(paragraph => {
+            console.log(paragraph); // logs every paragraph element one by one
+        });
+
+        // This doesn't work!
+        document.querySelectAll('.link').filter();
+    </script> -->
+
+    <!-- Получение текста элементов -->
+    <!-- <p>First Paragraph</p>
+    <p>Second Paragraph</p>
+    <script>
+        const paragraphs = document.querySelectAll('p');
+        paragraphs.forEach(paragraph => {
+            console.log(paragraph.textContent); // logs every paragraph's text
+        });
+        //Вызов paragraphs.textContent никогда не будет работать, так как в объекте NodeList нет свойства textContent. Данный метод должен вызываться для отдельно взятого элемента.
+    </script> -->
+
+    <!-- NodeList into Array -->
+    <!-- NodeList поддерживает только .length и .forEach(). Если вы хотите использовать .map() или .filter(), вам необходимо преобразовать NodeList в массив. -->
+
+        <!-- <script>
+            // const divs = document.querySelectorAll('div'); // NodeList
+            // const items = [...divs]; // Array
+            // Или в одной строке:
+            const items = [...document.querySelectAll('div')]; // Array
+        </script> -->
+
+        <!-- Фильтрация по тексту
+        <div class="navbar">
+            <a href="login.html">Login</a>
+            <a href="register.html">register</a>
+        </div>
+        <div class="footer">
+            <a href="login.html">Login</a>
+        </div>
+        Вы можете отфильтровать все ссылки, которые имеют текстовое содержимое Login.
+        <script>
+            const links = document.querySelectAll('a');
+            const loginLinks = [...links].filter(link => link.textContent === 'Login');
+            console.log(loginLinks); // Array of 2 links that have "Login" as textContent
+        </script> --> 
+
+        <!-- InnerHTML -->
+        <!-- <div id="test">This is a <strong>sample</strong> text</div>
+        <script>
+            const element = document.querySelectorAll('test');
+            console.log(element.textContent); // "This is a sample text"
+            console.log(element.innerHTML); // "This is a <strong>sample</strong> text"
+            // textContent вернет текст со всеми удаленными HTML-тегами
+            // innerHTML вернет строку внутри элемента HTML (не удаляет HTML-теги)
+            // Вы можете изменить значение свойства textContent, которое изменит содержимое внутри этого div.
+            element.textContent = "This is the new text!";
+            // Новое содержимое тега будет: <div id="test">This is the new text!</div>.
+            // Если вы попытаетесь написать теги HTML внутри этой строки, они будут отображаться не как HTML, а как текст:
+            element.textContent = "<strong>This will NOT be bold</strong>";
+            // Никогда не используйте innerHTML с данными, исходящими от пользователя.
+        </script>
+        
+        Безопасность.
+        Есть поле для комментариев и пользователь вбивает следующий код: -->
+        <!-- <script>alert('You got hacked');
+        // Вы берете эти данные и отображаете их как строку HTML где-то на странице приложения:
+        document.querySelector('#test').innerHTML = userComment;
+        // Браузер запустит сценарий, написанный этим пользователем. Пользователь может выполнить вредоносные действия. Например, перенаправление пользователей на другой веб-сайт или кража их файлов cookie, что позволяет злоумышленнику выдавать себя за пользователя.
+    </script> -->
+
+    <!-- Value -->
+    <!-- Вы запрашиваете у пользователя адрес электронной почты и хотите перепроверить, что эти данные корректны и что это поле не пустое. -->
+    <form>
+        <input type="email" id="email" placeholder="Enter your Email">
+        <input type="submit" value="Register">
+    </form>
+    <!-- Вы не сможете использовать свойство textContent, потому что у инпута нет закрывающего тега. -->
+    <script>
+        const email = document.querySelector('#email');
+        console.log(email.textContent); // undefined
+        console.log(email.value); // text written in the email field
+        // Если вы хотите прочитать значение тегов <input>, <select> или <textarea> вы должны получить доступ к свойству value.
+    </script>
+</body>
+</html>
